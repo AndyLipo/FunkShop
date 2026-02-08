@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Admin | Register</title>
+</head>
+
+<body>
+    <!--chequear links-->
+    <%- include('../partials/headerAdmin') %>
+    <body>
+        <section class="container">
+            <h1 class="register__titulo">CREA TU CUENTA</h1>
+            <h3 class="register__subtitulo">Completa el formulario para ser parte del mundo de los Funkos</h3>
+            <!-- Que campos ademas de la password deberian ser obligatorios???-->
+            <div class="register_container">
+                <form class="formulario" action="/auth/register" method="post">
+                    <div class="formulario_linea">
+                        <label for="name" class="formulario__label">Nombre:</label>
+                        <input name="name" id="name" type="text" placeholder="John">
+                    </div>
+                    <div class="formulario_linea">
+                        <label for="name" class="formulario__label">Apellido:</label>
+                        <input name="apellido" id="apellido" type="text" placeholder="Doe">
+                    </div>
+                    <div class="formulario_linea">
+                        <label for="email" class="formulario__label">Email:</label>
+                        <input name="email" id="email" type="email"
+                            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                            title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
+                    </div>
+                    <div class="formulario_linea">
+                        <label for="password" class="formulario__label">Contraseña:</label>
+                        <input type="password" id="password" name="password" placeholder="***********" required>
+                    </div>
+                    <div class="formulario_linea">
+                        <label for="password" class="formulario__label">Repita Contraseña:</label>
+                        <input type="password" id="repetir_password" name="repetir_password" placeholder="***********"
+                            required>
+                    </div>
+                    <div class="formulario__tyc">
+                        <button class="registrar" type="submit">Registrar</button>
+                        <input type="checkbox" name="si" id="si" value="si">
+                        <label for="terms_and_condiciones">
+                            <p class="tyc">Acepto </p>
+                            <a href="" class="tyc">Términos y Condiciones</a>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+    <%- include('../partials/footerAdmin') %>
+</body>
+
+</html>

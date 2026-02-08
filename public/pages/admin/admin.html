@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Admin | Tienda Funkoshop</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar container">
+            <picture class="navbar__logo">
+                <img src="../../img/branding/logo_light_horizontal.svg" alt="Isotipo de la marca Funkoshop">
+            </picture>
+            <ul class="navbar__menu">
+                <li class="navbar__item with-submenu">
+                    <a class="navbar__link" href="../shop/shop.html">VER TIENDA</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="./admin.html">ADMIN</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="./login.html">SALIR</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="busqueda">
+                <iconify-icon icon="ic:baseline-search" class="busqueda__icon"></iconify-icon>
+                <p><input class="busqueda__input" type="search" name="busqueda"
+                        placeholder="Código, nombre o categoria"></p>
+            </div>
+            <div class="listado">
+                <p class="listado__title">LISTADO DE PRODUCTOS</p>
+                <div class="agregar">
+                    <p class="listado__agregar">AGREGAR</p>
+                    <a class="navbar__cart" href="./create.html">
+                        <iconify-icon class="listado_agregarIcon" icon="ph:plus-fill"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+            <!-- Encabezado de la tabla de Productos-->
+            <section class="listado__grid">
+                <table class="listado__table">
+                    <tr class="listado__titulos">
+                        <td>
+                            <h3 class="listado__columna">ID</h3>
+                        </td>
+                        <td>
+                            <h3 class="listado__columna">Código</h3>
+                        </td>
+                        <td>
+                            <h3 class="listado__columna">Nombre del Producto</h3>
+                        </td>
+                        <td>
+                            <h3 class="listado__columna">Categoría</h3>
+                        </td>
+                    </tr>
+                    <tr class="listado__item">
+                        <td>
+                            <p class="listado__celda">1</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">STW001001</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">Baby Yoda Blueball</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">START WARS</p>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <iconify-icon class="listado__iconEdit" icon="ic:baseline-edit"></iconify-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <!-- TIENE QUE ELIMINAR, VER SI AGREGAMOS UN ALERT-->
+                                <iconify-icon class="listado__iconDelete"
+                                    icon="material-symbols-light:delete"></iconify-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="listado__item">
+                        <td>
+                            <p class="listado__celda">2</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">STW001002</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">Boba Fett Fighter</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">START WARS</p>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <iconify-icon class="listado__iconEdit" icon="ic:baseline-edit"></iconify-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <!-- TIENE QUE ELIMINAR, VER SI AGREGAMOS UN ALERT-->
+                                <iconify-icon class="listado__iconDelete"
+                                    icon="material-symbols-light:delete"></iconify-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="listado__item">
+                        <td>
+                            <p class="listado__celda">5</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">PKM001001</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">Charmander Smiley</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">POKEMON</p>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <iconify-icon class="listado__iconEdit" icon="ic:baseline-edit"></iconify-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <!-- TIENE QUE ELIMINAR, VER SI AGREGAMOS UN ALERT-->
+                                <iconify-icon class="listado__iconDelete"
+                                    icon="material-symbols-light:delete"></iconify-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="listado__item">
+                        <td>
+                            <p class="listado__celda">12</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">HPT001003</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">Luna Lovegood Lion Mask</p>
+                        </td>
+                        <td>
+                            <p class="listado__celda">HARRY POTTER</p>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <iconify-icon class="listado__iconEdit" icon="ic:baseline-edit"></iconify-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="navbar__cart" href="./edit.html">
+                                <!-- TIENE QUE ELIMINAR, VER SI AGREGAMOS UN ALERT-->
+                                <iconify-icon class="listado__iconDelete"
+                                    icon="material-symbols-light:delete"></iconify-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="navbar__main container">
+            <ul class="navbar__footer">
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="../shop/shop.html">SHOP</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="./register.html">REGISTRARSE</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="./login.html">INGRESAR</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="./contacto.html">CONTACTO</a>
+                </li>
+            </ul>
+            <picture class="navbar_logo">
+                <img src="../../img/branding/isotype.svg" alt="Isotipo de la marca Funkoshop">
+            </picture>
+        </nav>
+        <p class="rights container">All rights reserved 2022 - Funkoshop &copy;</p>
+    </footer>
+</body>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="../Js/admin.js"></script>
+
+</html>

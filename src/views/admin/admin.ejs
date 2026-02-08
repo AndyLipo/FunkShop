@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Admin | Funkoshop</title>
+</head>
+
+<body>
+    <%- include('../partials/headerAdmin') %>
+    <main>
+        <div class="container">
+            <% if (mensaje) { %>
+                <div class="admin__message" role="alert">
+                    <%= mensaje %>
+                </div>
+            <% } %>
+            <div class="busqueda">
+                <iconify-icon icon="ic:baseline-search" class="busqueda__icon"></iconify-icon>
+                <p><input class="busqueda__input" type="search" name="busqueda" placeholder="Código, nombre o categoria"></p>
+            </div>
+            <div class="listado">
+                <p class="listado__title">LISTADO DE PRODUCTOS</p>
+                <div class="agregar">
+                    <p class="listado__agregar">AGREGAR</p>
+                    <a class="navbar__cart" href="/admin/create/">
+                        <iconify-icon class="listado_agregarIcon" icon="ph:plus-fill"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+            <!-- Encabezado de la tabla de Productos-->
+            <section class="listado__grid">
+                <table class="listado__table">
+                    <tr class="listado__titulos">
+                        <td>
+                            <h3 class="listado__columna">ID</h3>
+                        </td>
+                        <td>
+                            <h3 class="listado__columna">Código</h3>
+                        </td>
+                        <td>
+                            <h3 class="listado__columna">Nombre del Producto</h3>
+                        </td>
+                        <td>
+                            <h3 class="listado__columna">Categoría</h3>
+                        </td>
+                    </tr>
+                    <% data.forEach(producto => {  %>
+                        <tr class="listado__item">
+                            <td>
+                                <p class="listado__celda"><%= producto.product_id %></p>
+                            </td>
+                            <td>
+                                <p class="listado__celda"><%= producto.sku %></p>
+                            </td>
+                            <td>
+                                <p class="listado__celda"><%= producto.product_name %></p>
+                            </td>
+                            <td>
+                                <p class="listado__celda"><%= producto.licence_name %></p>
+                            </td>
+                            <td>
+                                <a class="navbar__cart" href="/admin/edit/<%= producto.product_id %>">
+                                    <iconify-icon  class="listado__iconEdit" icon="ic:baseline-edit"></iconify-icon>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="navbar__cart" href="#" onclick="confirmDeletion('<%= producto.product_id %>')">
+                                    <iconify-icon class="listado__iconDelete" icon="material-symbols-light:delete"></iconify-icon>
+                                </a>
+                            </td>
+                        </tr>   
+                    <% }); %>
+                </table>
+            </section>
+        </div>
+    </main>
+    <%- include('../partials/footerAdmin') %>
+</body>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="../../js/admin.js"></script>  
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Css/style.css">
+    <title>Contacto | Funkoshop</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar container">
+            <picture class="navbar__logo">
+                <img src="../../img/branding/logo_light_horizontal.svg" alt="Isotipo de la marca Funkoshop">
+            </picture>
+            <ul class="navbar__menu">
+                <li class="navbar__item with-submenu">
+                    <a class="navbar__link with-icon" href="../shop/shop.html">SHOP <iconify-icon
+                            icon="tabler:chevron-down"></iconify-icon></a>
+                    <ul class="submenu">
+                        <li class="submenu__item">
+                            <a href="" class="submenu__link">Funkos</a>
+                        </li>
+                        <li class="submenu__item">
+                            <a href="" class="submenu__link">Remeras</a>
+                        </li>
+                        <li class="submenu__item">
+                            <a href="" class="submenu__link">Llaveros</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="contacto.html">CONTACTO</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link" href="./login.html">LOGIN</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__cart" href="./carrito.html">
+                        <picture>
+                            <img src="../../img/icons/cart-icon.svg" alt="Icono del carrito de compras">
+                        </picture>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <p class="contacto__titulo">CONTACTO</p>
+        </div>
+        <div class="contacto__container">
+            <form class="contacto" action="" method="post">
+                <div class="contacto__linea">
+                    <label for="name" class="item__label">Nombre:</label>
+                    <input class="item__input" name="name" id="name" type="text" placeholder="John">
+                </div>
+                <div class="contacto__linea">
+                    <label for="name" class="item__label">Apellido:</label>
+                    <input class="item__input" name="apellido" id="apellido" type="text" placeholder="Doe">
+                </div>
+                <div class="contacto__linea">
+                    <label for="email" class="item__label">Email:</label>
+                    <input class="item__input" name="email" id="email" type="email"
+                        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                        title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
+                </div>
+                <div class="contacto__linea">
+                    <label for="telefono" class="item__label">Teléfono:</label>
+                    <input class="item__input" name="telefono" id="telefono" type="number" placeholder="1122334455">
+                </div>
+                <div class="contacto__linea">
+                    <label for="razon" class="item__label">Razón de contacto:</label>
+                    <input class="item__input" name="razon" id="razon" type="text" placeholder="Escriba aqui el titulo del mensaje">
+                </div>
+                <div class="contacto__linea">
+                    <label for="mensaje" class="item__label">Mensaje:</label>
+                    <input class="contacto__mensaje" type="textarea" id="mensaje" name="Mensaje" placeholder="Escriba aquí su mensaje">
+                </div>
+                <div class="contacto__boton">
+                    <button class="contacto__enviar" type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="navbar__main container">
+            <ul class="navbar__footer">
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="../shop/shop.html">SHOP</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="./login.html">INGRESAR</a>
+                </li>
+                <li class="navbar__item">
+                    <a class="navbar__link_footer" href="./contacto.html">CONTACTO</a>
+                </li>
+            </ul>
+            <picture class="navbar_logo">
+                <img src="../../img/branding/isotype.svg" alt="Isotipo de la marca Funkoshop">
+            </picture>
+        </nav>
+        <p class="rights container">All rights reserved 2022 - Funkoshop &copy;</p>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+</html>
