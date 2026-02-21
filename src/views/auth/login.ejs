@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <title>Log In | Tienda Funkoshop</title>
 </head>
-<body>  
+
+<body>
     <!-- Navbar -->
     <%- include('../partials/headerAdmin') %>
-    <body>
-        <section class="container">
-            <h1 class="login__titulo">INGRESAR A MI CUENTA</h1>
-            <!-- Que campos ademas de la password deberian ser obligatorios???-->
-            <div class="form_container">
-                <form class="formulario" action="/auth/login" method="post">
-                    <!-- <div class="formulario_linea"> -->
-                    <div class="formulario_linea">
-                        <label for="email" class="formulario__label">Email:</label>
-                        <input class="formulario__input" name="email" id="email" type="email"
-                            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-                            title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
-                    </div>
-                    <div class="formulario_linea">
-                        <label for="password" class="formulario__label">Contraseña:</label>
-                        <input class="formulario__input" type="password" id="password" name="password" placeholder="***********" required>
-                    </div>
-                    <div class="formulario__ingresar">
-                        <button class="ingresar" type="submit">Ingresar</button>
-                        <input class="checkbox" type="checkbox" name="si" id="si" value="si">
-                        <label class="recordar"for="recordarme">
-                            <p class="recordar">Recordarme </p>
+
+        <body>
+            <section class="container">
+                <h1 class="login__titulo">INGRESAR A MI CUENTA</h1>
+                <!-- Que campos ademas de la password deberian ser obligatorios???-->
+                <div class="form_container">
+                    <form class="formulario" action="/login" method="post">
+                        <!-- <div class="formulario_linea"> -->
+                        <div class="formulario_linea">
+                            <label for="email" class="formulario__label">Email:</label>
+                            <input class="formulario__input" name="email" id="email" type="email"
+                                pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
+                        </div>
+                        <div class="formulario_linea">
+                            <label for="password" class="formulario__label">Contraseña:</label>
+                            <input class="formulario__input" type="password" id="password" name="password"
+                                placeholder="***********" required>
+                        </div>
+                        <div class="formulario__ingresar">
+                            <button class="ingresar" type="submit">Ingresar</button>
+                            <input class="checkbox" type="checkbox" name="si" id="si" value="si">
+                            <label class="recordar" for="recordarme">
+                                <p class="recordar">Recordarme </p>
+                            </label>
+                        </div>
+                        <label>
+                            <a href="" class="olvidar">Olvidé mi contraseña</a>
                         </label>
-                    </div>
-                    <label>
-                        <a href="" class="olvidar">Olvidé mi contraseña</a> 
-                    </label>
-                </form>
-            </div>
-        </section>
-        <% if (mensaje) { %>
-            <div class="login_errorMessage form_container" role="alert">
-                <%= mensaje %>
-            </div>
-        <% } %>
-    </body>
-    <%- include('../partials/footerAdmin') %>
+                    </form>
+                </div>
+            </section>
+            <% if (mensaje) { %>
+                <div class="login_errorMessage form_container" role="alert">
+                    <%= mensaje %>
+                </div>
+                <% } %>
+        </body>
+        <%- include('../partials/footerAdmin') %>
 </body>
+
 </html>

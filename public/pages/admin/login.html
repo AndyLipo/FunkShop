@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <title>Log In | Tienda Funkoshop</title>
 </head>
-<body>  
+
+<body>
     <!-- Navbar -->
     <header>
         <nav class="navbar container">
             <picture class="navbar__logo">
                 <a href="./index.html" class="foto">
-                    <img class="icon"src="../../Img/branding/logo_light_horizontal.svg">
+                    <img class="icon" src="../../Img/branding/logo_light_horizontal.svg">
                 </a>
-            </picture> 
+            </picture>
             <ul class="navbar__menu">
                 <li class="navbar__item with-submenu">
                     <a class="navbar__link with-icon" href="../shop/shop.html" class="shop">VER TIENDA</a>
@@ -26,9 +28,10 @@
                     <a class="navbar__link" class="login" href="./login.html">SALIR</a>
                 </li>
             </ul>
-            
+
         </nav>
     </header>
+
     <body>
         <section class="container">
             <h1 class="login__titulo">INGRESAR A MI CUENTA</h1>
@@ -39,28 +42,29 @@
                     <div class="formulario_linea">
                         <label for="email" class="formulario__label">Email:</label>
                         <input class="formulario__input" name="email" id="email" type="email"
-                            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
                             title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
                     </div>
                     <div class="formulario_linea">
                         <label for="password" class="formulario__label">Contraseña:</label>
-                        <input class="formulario__input" type="password" id="password" name="password" placeholder="***********" required>
+                        <input class="formulario__input" type="text" id="password" name="password_display"
+                            placeholder="••••••••••">
                     </div>
                     <div class="formulario__ingresar">
                         <button class="ingresar" type="submit">Ingresar</button>
                         <input class="checkbox" type="checkbox" name="si" id="si" value="si">
-                        <label class="recordar"for="recordarme">
+                        <label class="recordar" for="recordarme">
                             <p class="recordar">Recordarme </p>
                         </label>
                     </div>
                     <label>
-                        <a href="" class="olvidar">Olvidé mi contraseña</a> 
+                        <a href="" class="olvidar">Olvidé mi contraseña</a>
                     </label>
                 </form>
             </div>
         </section>
     </body>
-    
+
     <footer class="footer">
         <nav class="navbar container">
             <ul class="navbar__item">
@@ -77,11 +81,13 @@
                     <a class="navbar__link" href="./contacto.html">CONTACTO</a>
                 </li>
             </ul>
-                <picture>
-                    <img src="../../Img/branding/isotype.svg" alt="isotype de la marca">
-                </picture>
-            </nav>
+            <picture>
+                <img src="../../Img/branding/isotype.svg" alt="isotype de la marca">
+            </picture>
+        </nav>
         <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
     </footer>
 </body>
+<script src="../../js/login.js"></script>
+
 </html>

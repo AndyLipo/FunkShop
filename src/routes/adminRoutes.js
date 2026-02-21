@@ -1,15 +1,15 @@
 import { Router } from 'express'
 import multer from 'multer'
 const router = Router()
-import { getAllProducts, createItem, saveNewProduct, getProductById, updateProduct, deleteProduct} from '../controllers/adminController.js';
+import { getAllProducts, createItem, saveNewProduct, getProductById, updateProduct, deleteProduct } from '../controllers/adminController.js';
 
 // Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'public/uploads/');
+    cb(null, 'public/uploads/');
   },
   filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname);
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
@@ -18,10 +18,10 @@ const upload = multer({ storage: storage });
 
 // session
 const requiereAdmin = (req, res, next) => {
-    if (!req.session.esAdmin) {
-      return res.redirect("/auth/login");
-    }
-    next();
+  if (!req.session.esAdmin) {
+    return res.redirect("/auth/login");
+  }
+  next();
 };
 
 /*router.get('/', (req, res) => {
@@ -33,10 +33,16 @@ const requiereAdmin = (req, res, next) => {
 });*/
 
 router.get('/', requiereAdmin, getAllProducts);
-router.get('/create',requiereAdmin, createItem);
-router.post('/create',requiereAdmin, upload.single('img_front'), saveNewProduct); 
-router.get('/edit/:id',requiereAdmin, getProductById);
-router.post('/edit/:id',requiereAdmin, upload.single('img_front'), updateProduct);
-router.get('/delete/:id',requiereAdmin, deleteProduct);
+router.get('/create', requiereAdmin, createItem);
+router.post('/create', requiereAdmin, upload.fields([
+  { name: 'img_front', maxCount: 1 },
+  { name: 'img_back', maxCount: 1 }
+]), saveNewProduct);
+router.get('/edit/:id', requiereAdmin, getProductById);
+router.post('/edit/:id', requiereAdmin, upload.fields([
+  { name: 'img_front', maxCount: 1 },
+  { name: 'img_back', maxCount: 1 }
+]), updateProduct);
+router.get('/delete/:id', requiereAdmin, deleteProduct);
 
 export default router;

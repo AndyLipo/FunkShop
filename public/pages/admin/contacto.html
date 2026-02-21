@@ -16,11 +16,10 @@
             </picture>
             <ul class="navbar__menu">
                 <li class="navbar__item with-submenu">
-                    <a class="navbar__link with-icon" href="../shop/shop.html">SHOP <iconify-icon
-                            icon="tabler:chevron-down"></iconify-icon></a>
+                    <a class="navbar__link with-icon">SHOP <iconify-icon icon="tabler:chevron-down"></iconify-icon></a>
                     <ul class="submenu">
                         <li class="submenu__item">
-                            <a href="" class="submenu__link">Funkos</a>
+                            <a href="../shop/shop.html" class="submenu__link">Funkos</a>
                         </li>
                         <li class="submenu__item">
                             <a href="" class="submenu__link">Remeras</a>
@@ -73,30 +72,32 @@
                 </div>
                 <div class="contacto__linea">
                     <label for="razon" class="item__label">Razón de contacto:</label>
-                    <input class="item__input" name="razon" id="razon" type="text" placeholder="Escriba aqui el titulo del mensaje">
+                    <input class="item__input" name="razon" id="razon" type="text"
+                        placeholder="Escriba aqui el titulo del mensaje">
                 </div>
                 <div class="contacto__linea">
                     <label for="mensaje" class="item__label">Mensaje:</label>
-                    <input class="contacto__mensaje" type="textarea" id="mensaje" name="Mensaje" placeholder="Escriba aquí su mensaje">
+                    <input class="contacto__mensaje" type="textarea" id="mensaje" name="Mensaje"
+                        placeholder="Escriba aquí su mensaje">
                 </div>
+                <!-- Agregar funcion de envio con FormSpree-->
                 <div class="contacto__boton">
                     <button class="contacto__enviar" type="submit">Enviar</button>
                 </div>
             </form>
         </div>
     </main>
-
-    <footer>
-        <nav class="navbar__main container">
-            <ul class="navbar__footer">
+    <footer class="footer"> <!-- footer -->
+        <nav class="navbar container">
+            <ul class="navbar__item">
                 <li class="navbar__item">
-                    <a class="navbar__link_footer" href="../shop/shop.html">SHOP</a>
+                    <a class="navbar__link" href="../shop/shop.html">SHOP</a>
                 </li>
                 <li class="navbar__item">
-                    <a class="navbar__link_footer" href="./login.html">INGRESAR</a>
+                    <a class="navbar__link" href="./login.html">INGRESAR</a>
                 </li>
                 <li class="navbar__item">
-                    <a class="navbar__link_footer" href="./contacto.html">CONTACTO</a>
+                    <a class="navbar__link" href="./contacto.html">CONTACTO</a>
                 </li>
             </ul>
             <picture class="navbar_logo">

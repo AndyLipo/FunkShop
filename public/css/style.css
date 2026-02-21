@@ -381,7 +381,7 @@ header {
   font-family: var(--alternative-font);
   font-size: var(--font-display);
   font-weight: 700;
-  line-height: 54px;
+  line-height: 84px;
   text-align: center;
   padding: 0px 0px 8px 0px;
   padding-top: var(--spacing-68);
@@ -1019,7 +1019,7 @@ footer {
 
 .contacto__enviar {
   font-family: var(--base-font);
-  font-size: --var(--font-xsmall);
+  font-size: var(--font-xsmall);
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
@@ -1027,6 +1027,7 @@ footer {
   border: none;
   width: 175px;
   height: 44.33px;
+  cursor: pointer;
 }
 
 /*........ Page: Admin .........*/

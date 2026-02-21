@@ -10,80 +10,90 @@
 
 <body>
     <%- include('../partials/headerAdmin') %>
-    <body>
-        <section class="item container">
-            <h1 class="item__titulo">EDITAR ITEM</h1>
-            <form action="/admin/edit/<%= producto.product_id %>" method="post" enctype="multipart/form-data">
-                <div class="item__linea">
-                    <label for="categoria" class="item__label">Categoria:</label>
-                    <select name="category_id" id="categoria">
-                        <option value="<%= producto.category_name %>" selected><%= producto.category_name %></option>
-                        <option value="Figuras coleccionables">Figuras coleccionables</option>
-                    </select>
-                    <label for="licencia" class="item__label">Licencia:</label>
-                    <select name="licence_id" id="licencia" value="<%= producto.licence_name %>">
-                        <option value="<%= producto.licence_name %>" selected><%= producto.licence_name %></option>
-                        <option value="STAR WARS">STAR WARS</option>
-                        <option value="POKEMON">POKEMON</option>
-                        <option value="HARRY POTTER">HARRY POTTER</option>
-                    </select>
-                </div>
-                <div class="item__linea">
-                    <label for="producto" class="formulario__label">Nombre del Producto:</label>
-                    <input class="item__input" name="product_name" id="producto" type="text" value="<%= producto.product_name %>"> 
-                </div>
-                <div class="item__linea">
-                    <textarea class="item__description" name="product_description" id="descripcion"><%= producto.product_description %></textarea>
-                </div>
-                <div class="item__linea">
-                    <label for="sku" class="item__label">SKU:</label>
-                    <input class="item__input" name="sku" id="sku" type="text" value="<%= producto.sku %>">
-                    <label for="precio" class="item__label">Precio:</label>
-                    <input  class="item__input" name="price" id="precio" type="text" value="<%= producto.price %>">
-                    <label for="stock" class="item__label">Stock:</label>
-                    <input class="item__input" name="stock" id="stock" type="text" value="<%= producto.stock %>">
-                </div>
-                <div class="item__linea">
-                    <label for="descuento" class="item__label">Descuento:</label>
-                    <input class="item__input" name="discount" id="descuento" type="text" placeholder="0%" value="<%= producto.discount %>">
-                    <label for="cuotas" class="item__label">Cuotas:</label>
-                    <select name="product_cuotas" id="cuotas" value="<%= producto.product_cuotas %>">
-                        <option value="<%= producto.product_cuotas %>" selected><%= producto.product_cuotas %></option>
-                        <option value="3 Cuotas sin interés">3 Cuotas sin interés</option>
-                        <option value="6 Cuotas sin interés">6 Cuotas sin interés</option>
-                        <option value="12 Cuotas sin interés">12 Cuotas sin interés</option>
-                    </select>
-                </div>
-                <div class="item__linea">
-                    <label for="imagenes" class="item__label">Imagenes:</label>
-                </div>
-                <div class="item__linea">
-                    <label for="imagenes" class="item__labelImagen">Imagen Frente:</label>
-                    <input type="file" name="img_front" id="img_front"
-                    accept="image/png,image/jpeg">   > 
-                </div>
-                <div class="item__linea">
-                    <label for="imagenes" class="item__labelImagen">Imagen Dorso:</label>
-                    <input type="file" name="img_back" id="img_back"
-                    accept="image/png,image/jpeg">   > 
-                </div>
-                <div class="item__imagenes">
-                    <picture class="imagen" >
-                        <img src="<%= producto.img_front %>" alt="Imagen del producto - Frente">
-                        <label for="frente">FRENTE</label>
-                    </picture>
-                    <picture class="imagen" >
-                        <img src="<%= producto.img_back %>" alt="Imagen del producto - Dorso">
-                        <label for="dorso">DORSO</label>
-                    </picture>
-                </div>
-                <div class="item__botones">
-                    <button class="item__boton" type="submit">Modificar Producto</button>
-                </div>
-            </form>
-        </section>
-    </body>
-    <%- include('../partials/footerAdmin') %>
+
+        <body>
+            <section class="item container">
+                <h1 class="item__titulo">EDITAR ITEM</h1>
+                <form action="/admin/edit/<%= producto.product_id %>" method="post" enctype="multipart/form-data">
+                    <div class="item__linea">
+                        <label for="categoria" class="item__label">Categoria:</label>
+                        <select name="category_id" id="categoria">
+                            <option value="<%= producto.category_name %>" selected>
+                                <%= producto.category_name %>
+                            </option>
+                            <option value="Figuras coleccionables">Figuras coleccionables</option>
+                        </select>
+                        <label for="licencia" class="item__label">Licencia:</label>
+                        <select name="licence_id" id="licencia" value="<%= producto.licence_name %>">
+                            <option value="<%= producto.licence_name %>" selected>
+                                <%= producto.licence_name %>
+                            </option>
+                            <option value="STAR WARS">STAR WARS</option>
+                            <option value="POKEMON">POKEMON</option>
+                            <option value="HARRY POTTER">HARRY POTTER</option>
+                        </select>
+                    </div>
+                    <div class="item__linea">
+                        <label for="producto" class="formulario__label">Nombre del Producto:</label>
+                        <input class="item__input" name="product_name" id="producto" type="text"
+                            value="<%= producto.product_name %>">
+                    </div>
+                    <div class="item__linea">
+                        <textarea class="item__description" name="product_description"
+                            id="descripcion"><%= producto.product_description %></textarea>
+                    </div>
+                    <div class="item__linea">
+                        <label for="sku" class="item__label">SKU:</label>
+                        <input class="item__input" name="product_sku" id="sku" type="text"
+                            value="<%= producto.product_sku %>">
+                        <label for="precio" class="item__label">Precio:</label>
+                        <input class="item__input" name="product_price" id="precio" type="text"
+                            value="<%= producto.product_price %>">
+                        <label for="stock" class="item__label">Stock:</label>
+                        <input class="item__input" name="stock" id="stock" type="text" value="<%= producto.stock %>">
+                    </div>
+                    <div class="item__linea">
+                        <label for="descuento" class="item__label">Descuento:</label>
+                        <input class="item__input" name="discount" id="descuento" type="text" placeholder="0%"
+                            value="<%= producto.discount %>">
+                        <label for="cuotas" class="item__label">Cuotas:</label>
+                        <select name="dues" id="cuotas">
+                            <option value="<%= producto.dues %>" selected>
+                                <%= producto.dues %> Cuotas sin interés
+                            </option>
+                            <option value="3">3 Cuotas sin interés</option>
+                            <option value="6">6 Cuotas sin interés</option>
+                            <option value="12">12 Cuotas sin interés</option>
+                        </select>
+                    </div>
+                    <div class="item__linea">
+                        <label for="imagenes" class="item__label">Imagenes:</label>
+                    </div>
+                    <div class="item__linea">
+                        <label for="imagenes" class="item__labelImagen">Imagen Frente:</label>
+                        <input type="file" name="img_front" id="img_front" accept="image/png,image/jpeg"> >
+                    </div>
+                    <div class="item__linea">
+                        <label for="imagenes" class="item__labelImagen">Imagen Dorso:</label>
+                        <input type="file" name="img_back" id="img_back" accept="image/png,image/jpeg"> >
+                    </div>
+                    <div class="item__imagenes">
+                        <picture class="imagen">
+                            <img src="/<%= producto.img_front %>" alt="Imagen del producto - Frente">
+                            <label for="frente">FRENTE</label>
+                        </picture>
+                        <picture class="imagen">
+                            <img src="/<%= producto.img_back %>" alt="Imagen del producto - Dorso">
+                            <label for="dorso">DORSO</label>
+                        </picture>
+                    </div>
+                    <div class="item__botones">
+                        <button class="item__boton" type="submit">Modificar Producto</button>
+                    </div>
+                </form>
+            </section>
+        </body>
+        <%- include('../partials/footerAdmin') %>
 </body>
 
 </html>
