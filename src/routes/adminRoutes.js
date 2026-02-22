@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 // session
 const requiereAdmin = (req, res, next) => {
   if (!req.session.esAdmin) {
-    return res.redirect("/auth/login");
+    return res.redirect("/login");
   }
   next();
 };
