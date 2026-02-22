@@ -3,7 +3,7 @@ const router = Router();
 import { authControllers, loginPOST } from '../controllers/authController.js';
 
 router.get('/login', (req, res) => {
-    res.render('./login', {
+    res.render('./auth/login', {
         usuario: req.session.usuario,
         mensaje: req.query.mensaje || "",
         error: false

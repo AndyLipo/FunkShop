@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +9,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css">
     <title>Shop | Funkoshop </title>
 </head>
+
 <body>
     <!-- Navbar -->
     <%- include('../partials/headerShop') %>
-    <main>
-        <div class="shop">
-            <section class="shop__container"> <!--Filtrado-->
-                <div class="shop__form">
-                    <form class="Form-1">
-                        <div class="Form__buscar">
-                            <label class="Buscar">BUSCAR</label>
-                            <div class="Form__placeholder_buscar">
-                                <input type="text" class="Form__input_buscar" placeholder="   item o categoria"></input>
+        <main>
+            <div class="shop">
+                <section class="shop__container"> <!--Filtrado-->
+                    <div class="shop__form">
+                        <form class="Form-1">
+                            <div class="Form__buscar">
+                                <label class="Buscar">BUSCAR</label>
+                                <div class="Form__placeholder_buscar">
+                                    <input type="text" class="Form__input_buscar"
+                                        placeholder="   item o categoria"></input>
+                                </div>
                             </div>
-                        </div>
-                        <div class="Form-2">
-                            <label class="Form__precio">PRECIO</label>
-                            <div class="form__min-max">
-                                <label class="Min">MIN</label>
-                                <label class="Max">MAX</label>
-                                <label class="signo-">-</label>
-                                <input  type="number" class="form__placeholder-min" placeholder="   0"></input>
-                                <input  type="number" class="form__placeholder-max" placeholder="   0"></input>
+                            <div class="Form-2">
+                                <label class="Form__precio">PRECIO</label>
+                                <div class="form__min-max">
+                                    <label class="Min">MIN</label>
+                                    <label class="Max">MAX</label>
+                                    <label class="signo-">-</label>
+                                    <input type="number" class="form__placeholder-min" placeholder="   0"></input>
+                                    <input type="number" class="form__placeholder-max" placeholder="   0"></input>
+                                </div>
                             </div>
-                        </div>
-                        <div class="Form-3">
+                            <div class="Form-3">
                                 <label class="Form__OrdenarPor">ORDENAR POR</label>
                                 <div class="Form__Vector">
                                     <select class="Form__placeholder-vector">
@@ -41,65 +44,77 @@
                                         <option>Mas recientes</option>
                                     </select>
                                 </div>
-                        </div>
-                        <div class="Form-4">
-                            <label class="Form__Filtrar">FILTRAR</label>
-                            <div class="Form__Filtrar-gral">
-                                <div class="Form__Filtrar-nuevos">
-                                    <input name="nuevos"  class="Form__nuevos" type="checkbox">
-                                    <label class="Nuevos" for="nuevos">NUEVOS</label>
-                                </div>
-                                <div class="Form__ofertas">
-                                    <input class="Form__ofertas-input" id="ofertas" name="ofertas" type="checkbox">
-                                    <label class="Ofertas" for="ofertas">OFERTAS</label>
-                                </div>
-                                <div class="Form__EdiciNEspecial">
-                                    <input  class="Form__EdiciNEspecial-input" type="checkbox" id="EdiciNEspecial" name="EdiciNEspecial"></input>
-                                    <label class="EdiciNEspecial" for="EdiciNEspecial">EDICIÓN ESPECIAL</label>
-                                </div>
-                                <div class="Form__Fav">
-                                    <input  class="Form__Fav-input" type="checkbox" id="favoritos" name="favoritos"></input>
-                                    <label class="Favoritos" id="favoritos">FAVORITOS</label>
-                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                    
-            </section><!--Cierre Filtrado-->
-            <section class="sliders"> <!--cuerpo gral-->
-                <ul class="sliders__items">
-                    <% data.forEach(producto => {  %>
-                        <li class="sliders__item">
-                            <div class="carteles">
-                                <p class="nuevos">NUEVO</p> 
-                            </div>
-                            <article class="cards-item">
-                                <a  class="card-item__link" href="/shop/item/<%= producto.product_id %>">
-                                    <picture class="cards-item__cover">
-                                        <img class="cards-item__img--front" src=<%= producto.img_front %> alt="figura coleccionable Funko de stormtrooper">
-                                        <img class="cards-item__img--back" src=<%= producto.img_front %> alt="figura coleccionable Funko de stormtrooper en caja">
-                                    </picture>
-                                    <div class="card-item__content">
-                                        <p class="card-item__licence"><%= producto.licence_name %></p>
-                                        <h4  class="card-item__name"><%= producto.product_name %></h4>
-                                        <p class="card-item__price">$ <%= producto.price %></p>
-                                        <p class="card-item__promo">3 CUOTAS SIN INTERÉS</p>
-                                    
+                            <div class="Form-4">
+                                <label class="Form__Filtrar">FILTRAR</label>
+                                <div class="Form__Filtrar-gral">
+                                    <div class="Form__Filtrar-nuevos">
+                                        <input name="nuevos" class="Form__nuevos" type="checkbox">
+                                        <label class="Nuevos" for="nuevos">NUEVOS</label>
                                     </div>
-                                </a>
-                            </article>
-                        </li>
-                    <% }); %>
-                </ul>
-            </section> <!--Cierre cuerpo gral-->
-            <section class="numero"><!--paginas-->
-                <div class="Pagination">
+                                    <div class="Form__ofertas">
+                                        <input class="Form__ofertas-input" id="ofertas" name="ofertas" type="checkbox">
+                                        <label class="Ofertas" for="ofertas">OFERTAS</label>
+                                    </div>
+                                    <div class="Form__EdiciNEspecial">
+                                        <input class="Form__EdiciNEspecial-input" type="checkbox" id="EdiciNEspecial"
+                                            name="EdiciNEspecial"></input>
+                                        <label class="EdiciNEspecial" for="EdiciNEspecial">EDICIÓN ESPECIAL</label>
+                                    </div>
+                                    <div class="Form__Fav">
+                                        <input class="Form__Fav-input" type="checkbox" id="favoritos"
+                                            name="favoritos"></input>
+                                        <label class="Favoritos" id="favoritos">FAVORITOS</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </section><!--Cierre Filtrado-->
+                <section class="sliders"> <!--cuerpo gral-->
+                    <ul class="sliders__items">
+                        <% data.forEach(producto=> { %>
+                            <li class="sliders__item">
+                                <div class="carteles">
+                                    <p class="nuevos">NUEVO</p>
+                                </div>
+                                <article class="cards-item">
+                                    <a class="card-item__link" href="/shop/item/<%= producto.product_id %>">
+                                        <picture class="cards-item__cover">
+                                            <img class="cards-item__img--front" src="/<%= producto.img_front %>"
+                                                alt="<%= producto.product_name %>">
+                                            <img class="cards-item__img--back" src="/<%= producto.img_back %>"
+                                                alt="<%= producto.product_name %> en caja">
+                                        </picture>
+                                        <div class="card-item__content">
+                                            <p class="card-item__licence">
+                                                <%= producto.licence_name %>
+                                            </p>
+                                            <h4 class="card-item__name">
+                                                <%= producto.product_name %>
+                                            </h4>
+                                            <p class="card-item__price">$ <%= producto.product_price %>
+                                            </p>
+                                            <p class="card-item__promo">
+                                                <%= producto.dues %> CUOTAS SIN INTERÉS
+                                            </p>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                            <% }); %>
+                    </ul>
+                </section> <!--Cierre cuerpo gral-->
+                <section class="numero"><!--paginas-->
+                    <div class="Pagination">
                         <div class="PageMaster">
                             <div class="IcCaratRight">
                                 <div class="IcCaratLeft">
                                     <a class="IcCarat-Right">
-                                        <a class="glide__arrows glide__arrow--left icon__slider" data-glide-dir="<"><iconify-icon icon="tabler:chevron-left"></iconify-icon></a>
+                                        <a class="glide__arrows glide__arrow--left icon__slider"
+                                            data-glide-dir="<"><iconify-icon
+                                                icon="tabler:chevron-left"></iconify-icon></a>
                                     </a>
                                 </div>
                             </div>
@@ -126,43 +141,48 @@
                         </div>
                         <div class="PageDefault">
                             <div class="Page-Default">
-                                <div class="Num-gral Page-Default" >10</div>
+                                <div class="Num-gral Page-Default">10</div>
                             </div>
                         </div>
                         <div class="PageMaster">
                             <div class="IcCaratRight">
                                 <div class="IcCaratLeft">
                                     <a class="IcCarat-Right">
-                                        <a class="glide__arrows glide__arrow--left icon__slider" data-glide-dir=">"><iconify-icon icon="tabler:chevron-right"></iconify-icon></a>
+                                        <a class="glide__arrows glide__arrow--left icon__slider"
+                                            data-glide-dir=">"><iconify-icon
+                                                icon="tabler:chevron-right"></iconify-icon></a>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-            </section>
-        </div>
-    </main>
-    <%- include('../partials/footerShop') %>
+                </section>
+            </div>
+        </main>
+        <%- include('../partials/footerShop') %>
 
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-<script>
-     document.addEventListener('DOMContentLoaded', function () {
-        const dropdownBtn = document.getElementById('dropdownBtn');
-        const dropdownContent = document.getElementById('myDropdown');
+            <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+            <script src="/js/shop.js"></script>
 
-        dropdownBtn.addEventListener('click', function () {
-            dropdownContent.classList.toggle('show');
-        });
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const dropdownBtn = document.getElementById('dropdownBtn');
+                    const dropdownContent = document.getElementById('myDropdown');
 
-        window.onclick = function (event) {
-            if (!event.target.matches('#dropdownBtn')) {
-                if (dropdownContent.classList.contains('show')) {
-                    dropdownContent.classList.remove('show');
-                }
-            }
-        };
-    });
-</script>
+                    dropdownBtn.addEventListener('click', function () {
+                        dropdownContent.classList.toggle('show');
+                    });
+
+                    window.onclick = function (event) {
+                        if (!event.target.matches('#dropdownBtn')) {
+                            if (dropdownContent.classList.contains('show')) {
+                                dropdownContent.classList.remove('show');
+                            }
+                        }
+                    };
+                });
+            </script>
 </body>
+
 </html>

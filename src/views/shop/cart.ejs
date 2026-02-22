@@ -4,109 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Carrito | Funkoshop</title>
 </head>
 
 <body>
     <%- include('../partials/headerShop') %>
-    <main>
-        <div class="carrito__hero container">
-            <p class="carrito__title">CARRITO DE COMPRAS</p>
-        </div>
-        <!-- Encabezado de la tabla del carrito-->
-        <section class="carrito container">
-            <table class="carrito__grid">
-                <tr class="carrito__titulos">
-                    <td>
-                        <h3 class="carrito__columna">DETALLE DEL PRODUCTO</h3>
-                    </td>
-                    <td>
-                        <h3 class="carrito__columna">CANTIDAD</h3>
-                    </td>
-                    <td>
-                        <h3 class="carrito__columna">TOTAL</h3>
-                    </td>
-                </tr>
-                <% data.forEach(producto => {  %>
-                    <tr class="carrito__item">
+        <main>
+            <div class="carrito__hero container">
+                <p class="carrito__title">CARRITO DE COMPRAS</p>
+            </div>
+            <!-- Encabezado de la tabla del carrito-->
+            <section class="carrito container">
+                <table class="carrito__grid">
+                    <tr class="carrito__titulos">
                         <td>
-                            <a href="/shop/home" class="carrito_detalle">
-                                <picture>
-                                    <img class="item_imagen" src=<%= producto.img_front %> id="imagen_item"
-                                        alt=<%= producto.product_description %>>
-                                </picture>
-                                <div>
-                                    <h3 class="item_nombre"><%= producto.product_name %></h3>
-                                    <h4 class="item_coleccion"> <%= producto.licence_name %></h4>
-                                    <h5 class="item_precio">precio: $ <p id="precio_unitario"><%= producto.product_price %></p></h5>
-                                </div>
-                            </a>
+                            <h3 class="carrito__columna">DETALLE DEL PRODUCTO</h3>
                         </td>
                         <td>
-                        <div class="cantidad__items">
-                                <input type="text" value=<%= producto.units_in_cart %> name="quantity" id="quantity" class="cantidad__nro">
-                                <div class="cantidad__botones">
-                                    <button id="add" class="cantidad__mas">+</button>
-                                    <button id="substract" class="cantidad__menos">-</button>
-                                </div>
-                            </div>
+                            <h3 class="carrito__columna">CANTIDAD</h3>
                         </td>
                         <td>
-                            <h3 class="item_precioTotal" id="item_precioTotal" >$ 3.599,98</h3>
-                        </td>
-                        <td>
-                            <iconify-icon icon="zondicons:close-outline" class="eliminar_icono" onclick=""></iconify-icon>
+                            <h3 class="carrito__columna">TOTAL</h3>
                         </td>
                     </tr>
-                <% }); %>
-            </table>
-        </section>
-        </section>
-        <section class="resumen container">
-            <h1 class="resumen__titulo">RESUMEN</h1>
-            <table class="resumen__contenido">
-                <tr>
-                    <td>
-                        <p class="resumen_cantidad">CANTIDAD DE ELEMENTOS</p>
-                    </td>
-                    <td>
-                        <p class="resumen_cant_nro">3</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="resumen_subtotal">SUBTOTAL</p>
-                    </td>
-                    <td>
-                        <p class="resumen_subtotal_nro">$ 5.399,97</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="resumen__envio">ENVIO</p>
-                    </td>
-                    <td>
-                        <p class="resumen__envio_nro">$ 0,00</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="resumen_total">TOTAL</p>
-                    </td>
-                    <td>
-                        <p class="resumen_total_nro">$ 5.399,97</p>
-                </tr>
-            </table>
-            <a href="../pages/pagar.html">
-                <button class="boton_ir_a_pagar">IR A PAGAR</button>
-                <!--TO DO: Implementar pagina pagar.html-->
-            </a>
-        </section>
-    </main>
-    <%- include('../partials/footerShop') %>
+                    <% data.forEach(producto=> { %>
+                        <tr class="carrito__item">
+                            <td>
+                                <a href="/shop/item/<%= producto.product_id %>" class="carrito_detalle">
+                                    <picture>
+                                        <img class="item_imagen" src="/<%= producto.img_front %>" id="imagen_item"
+                                            alt="<%= producto.product_description %>">
+                                    </picture>
+                                    <div>
+                                        <h3 class="item_nombre">
+                                            <%= producto.product_name %>
+                                        </h3>
+                                        <h4 class="item_coleccion">
+                                            <%= producto.licence_name %>
+                                        </h4>
+                                        <h5 class="item_precio">precio: $ <span id="precio_unitario">
+                                                <%= producto.product_price %>
+                                            </span></h5>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="cantidad__items">
+                                    <input type="text" value="<%= producto.units_in_cart %>" name="quantity"
+                                        id="quantity" class="cantidad__nro">
+                                    <div class="cantidad__botones">
+                                        <button id="add" class="cantidad__mas">+</button>
+                                        <button id="substract" class="cantidad__menos">-</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h3 class="item_precioTotal" id="item_precioTotal">$ <%= (producto.product_price *
+                                        producto.units_in_cart).toFixed(2) %>
+                                </h3>
+                            </td>
+                            <td>
+                                <iconify-icon icon="zondicons:close-outline" class="eliminar_icono"
+                                    onclick=""></iconify-icon>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </table>
+            </section>
+            <section class="resumen container">
+                <h1 class="resumen__titulo">RESUMEN</h1>
+                <table class="resumen__contenido">
+                    <tr>
+                        <td>
+                            <p class="resumen_cantidad">CANTIDAD DE ELEMENTOS</p>
+                        </td>
+                        <td>
+                            <p class="resumen_cant_nro">
+                                <%= data.length %>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="resumen_subtotal">SUBTOTAL</p>
+                        </td>
+                        <td>
+                            <% let subtotal=data.reduce((sum, p)=> sum + (p.product_price * p.units_in_cart), 0); %>
+                                <p class="resumen_subtotal_nro">$ <%= subtotal.toFixed(2) %>
+                                </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="resumen__envio">ENVIO</p>
+                        </td>
+                        <td>
+                            <p class="resumen__envio_nro">$ 0,00</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="resumen_total">TOTAL</p>
+                        </td>
+                        <td>
+                            <p class="resumen_total_nro">$ <%= subtotal.toFixed(2) %>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <a href="/checkout">
+                    <button class="boton_ir_a_pagar">IR A PAGAR</button>
+                </a>
+            </section>
+        </main>
+        <%- include('../partials/footerShop') %>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<script src="../../js/carrito.js"></script>
+<script src="/js/carrito.js"></script>
+
 </html>
