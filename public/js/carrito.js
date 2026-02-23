@@ -1,76 +1,75 @@
-// Obtenemos los botones y el input
 const addButtons = document.querySelectorAll("#add");
 const substractButtons = document.querySelectorAll("#substract");
+const deleteButtons = document.querySelectorAll(".eliminar_icono");
 
-// Función para armar el número desde el array de precios
-function armarNro(precio) {
-    if (precio.length > 1) {
-        return (Number(precio[0]) + (0.01 * Number(precio[1])));
-    }
-    else return (Number(precio[0]));
-}
-
-// Función para actualizar el total de un item
-function actualizarTotal(itemRow) {
-    const quantity = itemRow.querySelector("#quantity");
-    const precioUnitario = itemRow.querySelector("#precio_unitario").textContent;
-    const precioNro = precioUnitario.match(/\d+/g);
-    const precioTotal = itemRow.querySelector("#item_precioTotal");
-
-    const precioTotalTemp = armarNro(precioNro) * Number(quantity.value);
-    precioTotal.textContent = "$ " + precioTotalTemp.toFixed(2);
-
-    // Actualizar el resumen
-    actualizarResumen();
-}
-
-// Función para actualizar el resumen completo
-function actualizarResumen() {
-    const rows = document.querySelectorAll(".carrito__item");
-    let cantidadTotal = 0;
-    let subtotalGeneral = 0;
-
-    rows.forEach(row => {
-        const quantity = row.querySelector("#quantity");
-        const precioUnitario = row.querySelector("#precio_unitario").textContent;
-        const precioNro = precioUnitario.match(/\d+/g);
-
-        const cantidad = Number(quantity.value);
-        const precioUnit = armarNro(precioNro);
-
-        cantidadTotal += cantidad;
-        subtotalGeneral += (precioUnit * cantidad);
-    });
-
-    // Actualizar el DOM del resumen
-    document.querySelector(".resumen_cant_nro").textContent = cantidadTotal;
-    document.querySelector(".resumen_subtotal_nro").textContent = "$ " + subtotalGeneral.toFixed(2);
-    document.querySelector(".resumen_total_nro").textContent = "$ " + subtotalGeneral.toFixed(2);
-}
-
-// Event listeners para cada fila del carrito
-addButtons.forEach((add, index) => {
-    add.addEventListener('click', (e) => {
+// Event listeners para cada fila
+addButtons.forEach((add) => {
+    add.addEventListener('click', async (e) => {
         e.preventDefault();
         const itemRow = add.closest('.carrito__item');
         const quantity = itemRow.querySelector("#quantity");
+        const productId = itemRow.querySelector('.carrito_detalle').href.split('/').pop();
 
         quantity.value = Number(quantity.value) + 1;
-        actualizarTotal(itemRow);
+
+        await actualizarCantidad(productId, quantity.value);
     });
 });
 
-substractButtons.forEach((substract, index) => {
-    substract.addEventListener('click', (e) => {
+substractButtons.forEach((substract) => {
+    substract.addEventListener('click', async (e) => {
         e.preventDefault();
         const itemRow = substract.closest('.carrito__item');
         const quantity = itemRow.querySelector("#quantity");
+        const productId = itemRow.querySelector('.carrito_detalle').href.split('/').pop();
 
-        if (Number(quantity.value) > 0) {
+        if (Number(quantity.value) > 1) {
             quantity.value = Number(quantity.value) - 1;
-            actualizarTotal(itemRow);
+            await actualizarCantidad(productId, quantity.value);
         } else {
-            window.alert("Cantidad de items = 0\nDesea eliminar este item del carrito? Por favor utilice el botón eliminar del artículo que desea remover.");
+            if (confirm('¿Eliminar este producto del carrito?')) {
+                await eliminarProducto(productId);
+                itemRow.remove();
+            }
         }
     });
 });
+
+deleteButtons.forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+        const itemRow = btn.closest('.carrito__item');
+        const productId = itemRow.querySelector('.carrito_detalle').href.split('/').pop();
+
+        if (confirm('¿Eliminar este producto del carrito?')) {
+            await eliminarProducto(productId);
+            itemRow.remove();
+            location.reload();
+        }
+    });
+});
+
+async function actualizarCantidad(productId, quantity) {
+    try {
+        const response = await fetch(`/shop/cart/update/${productId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ quantity })
+        });
+
+        if (response.ok) {
+            location.reload(); // Recargar para actualizar totales
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+async function eliminarProducto(productId) {
+    try {
+        await fetch(`/shop/cart/remove/${productId}`, {
+            method: 'DELETE'
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
