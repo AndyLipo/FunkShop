@@ -126,7 +126,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <a href="/checkout">
+                        <a href="/shop/checkout">
                             <button class="boton_ir_a_pagar">IR A PAGAR</button>
                         </a>
                     </section>
@@ -136,5 +136,9 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 <script src="/js/carrito.js"></script>
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+    const mp = new MercadoPago("APP_USR-db502f4a-42bf-4c2e-a786-50950972651d");
+</script>
 
 </html>

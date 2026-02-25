@@ -123,7 +123,15 @@ export const removeFromCart = (req, res) => {
     res.json({ success: true });
 };
 
-// Ruta para ir a checkout (por implementar)
-export const addCart = (req, res) => {
-    res.send('Route for Go to Checkout page');
+
+export const goToCheckout = (req, res) => {
+    const carritoItems = req.session.carrito || [];
+
+    if (carritoItems.length === 0) {
+        return res.redirect('/shop/cart');
+    }
+
+    res.render('./shop/checkout', {
+        data: carritoItems
+    });
 };

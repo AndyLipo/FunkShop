@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Checkout | Funkoshop</title>
+</head>
+
+<body>
+    <%- include('../partials/headerShop') %>
+        <main>
+            <div class="carrito__hero container">
+                <p class="carrito__title">FINALIZAR COMPRA</p>
+            </div>
+
+            <section class="checkout container" style="padding: 2rem 0; max-width: 800px; margin: 0 auto;">
+                <h2 style="margin-bottom: 2rem;">Resumen de tu pedido</h2>
+
+                <!-- Listado de productos -->
+                <div style="margin-bottom: 2rem;">
+                    <% data.forEach(producto=> { %>
+                        <div
+                            style="display: flex; gap: 1rem; margin-bottom: 1rem; padding: 1rem; border: 1px solid #ddd;">
+                            <img src="/<%= producto.img_front %>" alt="<%= producto.product_name %>"
+                                style="width: 80px; height: 80px; object-fit: cover;">
+                            <div style="flex: 1;">
+                                <h4>
+                                    <%= producto.product_name %>
+                                </h4>
+                                <p>Cantidad: <%= producto.units_in_cart %>
+                                </p>
+                                <p><strong>$ <%= producto.product_price %></strong></p>
+                            </div>
+                            <div>
+                                <strong>$ <%= (producto.product_price * producto.units_in_cart).toFixed(2) %></strong>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+
+                <!-- Resumen de totales -->
+                <% let subtotal=data.reduce((sum, p)=> sum + (p.product_price * p.units_in_cart), 0); %>
+
+                    <div style="margin: 2rem 0; padding: 1rem; background: #f5f5f5;">
+                        <p style="display: flex; justify-content: space-between;"><span>Subtotal:</span> <strong>$ <%=
+                                    subtotal.toFixed(2) %></strong></p>
+                        <p style="display: flex; justify-content: space-between;"><span>Envío:</span> <strong>$
+                                0.00</strong></p>
+                        <hr>
+                        <h3 style="display: flex; justify-content: space-between; font-size: 1.5rem;">
+                            <span>TOTAL:</span> <strong>$ <%= subtotal.toFixed(2) %></strong></h3>
+                    </div>
+
+                    <!-- Botón de MercadoPago que redirige -->
+                    <div style="margin: 2rem 0; text-align: center;">
+                        <button id="checkout-btn"
+                            style="background: #009ee3; color: white; padding: 1rem 3rem; font-size: 1.2rem; border: none; border-radius: 5px; cursor: pointer;">
+                            Pagar con MercadoPago
+                        </button>
+                        <p id="loading" style="display: none; margin-top: 1rem;">Redirigiendo a MercadoPago...</p>
+                    </div>
+
+                    <a href="/shop/cart" style="display: inline-block; margin-top: 1rem; color: #009ee3;">← Volver al
+                        carrito</a>
+            </section>
+        </main>
+        <%- include('../partials/footerShop') %>
+
+            <script>
+                const checkoutBtn = document.getElementById('checkout-btn');
+                const loading = document.getElementById('loading');
+
+                checkoutBtn.addEventListener('click', async () => {
+                    checkoutBtn.disabled = true;
+                    loading.style.display = 'block';
+
+                    try {
+                        const response = await fetch('/shop/create-preference', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                        const data = await response.json();
+
+                        if (data.init_point) {
+                            // Redirigir a la página de MercadoPago
+                            window.location.href = data.init_point;
+                        } else {
+                            alert('Error al crear la preferencia de pago');
+                            checkoutBtn.disabled = false;
+                            loading.style.display = 'none';
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error al procesar el pago');
+                        checkoutBtn.disabled = false;
+                        loading.style.display = 'none';
+                    }
+                });
+            </script>
+</body>
+
+</html>
