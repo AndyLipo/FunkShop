@@ -5,10 +5,18 @@
                 <img src="/img/branding/logo_light_horizontal.svg" alt="Isotipo de la marca Funkoshop">
             </a>
         </picture>
-        <ul class="navbar__menu">
+
+        <!-- Botón hamburguesa -->
+        <button class="navbar__toggle" id="menu-toggle" aria-label="Toggle menu">
+            ☰
+        </button>
+
+        <ul class="navbar__menu" id="navbar-menu">
             <li class="navbar__item with-submenu">
-                <a class="navbar__link with-icon" href="/shop">SHOP <iconify-icon
-                        icon="tabler:chevron-down"></iconify-icon></a>
+                <a class="navbar__link with-icon" href="/shop">
+                    SHOP
+                    <iconify-icon icon="tabler:chevron-down"></iconify-icon>
+                </a>
                 <ul class="submenu">
                     <li class="submenu__item">
                         <a href="/shop" class="submenu__link">Funkos</a>
@@ -37,3 +45,60 @@
         </ul>
     </nav>
 </header>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('navbar-menu');
+        const submenuItems = document.querySelectorAll('.with-submenu');
+
+        // Toggle menú principal
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+
+            // Cerrar menú al hacer click en un link (excepto submenus)
+            menu.querySelectorAll('.navbar__link').forEach(link => {
+                if (!link.closest('.with-submenu')) {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            menu.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Toggle submenús en mobile
+        submenuItems.forEach(item => {
+            const link = item.querySelector('.navbar__link');
+            const submenu = item.querySelector('.submenu');
+
+            if (link && submenu) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault(); // Evita navegación en mobile
+                        item.classList.toggle('active');
+
+                        // Cerrar otros submenús
+                        submenuItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        // Cerrar menú al hacer click fuera
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!e.target.closest('.navbar') && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    submenuItems.forEach(item => item.classList.remove('active'));
+                }
+            }
+        });
+    });
+</script>

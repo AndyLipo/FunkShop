@@ -3,7 +3,7 @@
 import express from 'express';
 import session from 'express-session';
 const app = express();
-//const port = process.env.PORT || 3000;
+
 import mainRoutes from './src/routes/mainRoutes.js';
 import shopRoutes from './src/routes/shopRoutes.js';
 import adminRoutes from './src/routes/adminRoutes.js';
@@ -15,11 +15,9 @@ app.use(session({
     cookie: { maxAge: 60000 * 5 }, // 5 minutos
     resave: false,
     saveUninitialized: false,
-})
-)
+}))
 
-// middlewares
-app.use(express.static('public'));
+// Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
@@ -27,10 +25,13 @@ app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
-app.use(express.static('public'));
+// ✅ RUTAS PRIMERO (ANTES DE EXPRESS.STATIC)
 app.use('/shop', shopRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', authRoutes);
 app.use('/', mainRoutes);
+
+// ✅ EXPRESS.STATIC AL FINAL (Y SOLO UNA VEZ)
+app.use(express.static('public'));
 
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));

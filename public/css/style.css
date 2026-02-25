@@ -21,30 +21,29 @@
   --light-bg-solid: #FAFAFF;
   --light-font-solid: #FFFFFF;
 
-  /* Typograpghy */
+  /* Typography */
   --base-font: 'Inter', sans-serif;
   --alternative-font: 'Raleway', sans-serif;
 
-  /* font-size  */
-  --font-display: 4.6em;
-  --font-jumbo: 3.8em;
-  --font-xlarge: 3em;
-  --font-large: 2.4em;
-  --font-medium: 1.8em;
-  --font-small: 1.6em;
-  --font-xsmall: 1.4em;
+  /* Font-size - Ahora responsive con clamp */
+  --font-display: clamp(3rem, 5vw, 4.6rem);
+  --font-jumbo: clamp(2.5rem, 4vw, 3.8rem);
+  --font-xlarge: clamp(2rem, 3.5vw, 3rem);
+  --font-large: clamp(1.8rem, 2.5vw, 2.4rem);
+  --font-medium: clamp(1.4rem, 2vw, 1.8rem);
+  --font-small: clamp(1.2rem, 1.8vw, 1.6rem);
+  --font-xsmall: clamp(1rem, 1.5vw, 1.4rem);
 
-  /* Spacing */
-  --spacing-128: 12.8rem;
-  --spacing-68: 6.8rem;
-  --spacing-36: 3.6rem;
-  --spacing-28: 2.8rem;
-  --spacing-24: 2.4rem;
-  --spacing-20: 2rem;
-  --spacing-16: 1.6rem;
-  --spacing-12: 1.2rem;
-  --spacing-8: 0.8rem;
-
+  /* Spacing - Ahora responsive con clamp */
+  --spacing-128: clamp(6rem, 12vw, 12.8rem);
+  --spacing-68: clamp(3rem, 6vw, 6.8rem);
+  --spacing-36: clamp(2rem, 4vw, 3.6rem);
+  --spacing-28: clamp(1.5rem, 3vw, 2.8rem);
+  --spacing-24: clamp(1.2rem, 2.5vw, 2.4rem);
+  --spacing-20: clamp(1rem, 2vw, 2rem);
+  --spacing-16: clamp(0.8rem, 1.5vw, 1.6rem);
+  --spacing-12: clamp(0.6rem, 1.2vw, 1.2rem);
+  --spacing-8: clamp(0.4rem, 0.8vw, 0.8rem);
 }
 
 *,
@@ -79,20 +78,23 @@ ol {
 }
 
 p {
-  font-size: 1.8em;
+  font-size: var(--font-medium);
 }
 
 img {
   width: 100%;
+  height: auto;
+  display: block;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  /* ✅ Padding adaptativo */
 }
 
-/* ........... Pagina: Shop ...............*/
-/* header */
+/* ========== HEADER ========== */
 
 header {
   background-color: var(--dark-bg-solid);
@@ -103,15 +105,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-20);
 }
 
 .navbar__logo {
-  max-width: 300px;
+  max-width: min(300px, 50vw);
+  /* ✅ Responsive automático */
 }
 
 .navbar__menu {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--spacing-20);
 }
 
@@ -121,6 +127,8 @@ header {
   display: inline-block;
   transition: background .3s ease-in-out;
   position: relative;
+  white-space: nowrap;
+  /* ✅ Evita que se rompa el texto */
 }
 
 .navbar__link:hover {
@@ -139,10 +147,12 @@ header {
 
 .submenu {
   display: none;
-  width: 300px;
+  width: min(300px, 90vw);
+  /* ✅ No se sale en mobile */
   position: absolute;
   background-color: var(--dark-bg-solid);
   z-index: 3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .submenu__link {
@@ -154,6 +164,85 @@ header {
 
 .submenu__link:hover {
   background-color: var(--primary-900);
+}
+
+/* ========== MENÚ HAMBURGUESA (Mobile) ========== */
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--light-font-solid);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: var(--spacing-8);
+}
+
+@media (max-width: 768px) {
+  .navbar__menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--dark-bg-solid);
+    padding: var(--spacing-20);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  .navbar__menu.active {
+    display: flex;
+  }
+
+  .navbar__toggle {
+    display: block;
+  }
+
+  .navbar__item {
+    width: 100%;
+  }
+
+  .navbar__link {
+    width: 100%;
+    padding: var(--spacing-12) var(--spacing-16);
+  }
+
+  /* Submenú en mobile */
+  .submenu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    padding-left: var(--spacing-20);
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .with-submenu:hover .submenu {
+    display: none;
+    /* Desactivar hover en mobile */
+  }
+
+  .with-submenu.active .submenu {
+    display: block;
+    /* Activar con click en mobile */
+  }
+
+  .with-icon iconify-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .with-submenu.active .with-icon iconify-icon {
+    transform: rotate(180deg);
+    /* Rotar el icono cuando está abierto */
+  }
+
+  /* Estilo de los links del submenu */
+  .submenu__link {
+    padding: var(--spacing-8) var(--spacing-16);
+    font-size: var(--font-small);
+  }
 }
 
 /* HERO */
