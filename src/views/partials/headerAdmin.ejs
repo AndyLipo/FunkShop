@@ -5,12 +5,18 @@
                 <img src="/img/branding/logo_light_horizontal.svg" alt="Isotipo de la marca Funkoshop">
             </a>
         </picture>
-        <ul class="navbar__menu">
-            <li class="navbar__item with-submenu">
-                <a class="navbar__link with-icon" href="/shop">VER TIENDA</a>
+
+        <!-- ✅ Botón hamburguesa -->
+        <button class="navbar__toggle" id="menu-toggle" aria-label="Toggle menu">
+            ☰
+        </button>
+
+        <ul class="navbar__menu" id="navbar-menu">
+            <li class="navbar__item">
+                <a class="navbar__link" href="/shop">VER TIENDA</a>
             </li>
             <li class="navbar__item">
-                <a class="navbar__link" href="/login">ADMIN</a>
+                <a class="navbar__link" href="/admin">ADMIN</a>
             </li>
             <li class="navbar__item">
                 <a class="navbar__link" href="/logout">SALIR</a>
@@ -18,3 +24,34 @@
         </ul>
     </nav>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('navbar-menu');
+
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+
+            // Cerrar menú al hacer click en un link
+            menu.querySelectorAll('.navbar__link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        menu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Cerrar menú al hacer click fuera
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (!e.target.closest('.navbar') && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                    }
+                }
+            });
+        }
+    });
+</script>

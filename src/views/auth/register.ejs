@@ -12,48 +12,51 @@
     <!--chequear links-->
     <%- include('../partials/headerAdmin') %>
 
-        <body>
+        <main>
             <section class="container">
                 <h1 class="register__titulo">CREA TU CUENTA</h1>
                 <h3 class="register__subtitulo">Completa el formulario para ser parte del mundo de los Funkos</h3>
-                <!-- Que campos ademas de la password deberian ser obligatorios???-->
+
                 <div class="register_container">
-                    <form class="formulario" action="/auth/register" method="post">
+                    <form class="formulario" action="/register" method="post">
                         <div class="formulario_linea">
                             <label for="name" class="formulario__label">Nombre:</label>
-                            <input name="product_name" id="name" type="text" placeholder="John">
+                            <input class="formulario__input" name="name" id="name" type="text" placeholder="John"
+                                required>
                         </div>
                         <div class="formulario_linea">
-                            <label for="name" class="formulario__label">Apellido:</label>
-                            <input name="apellido" id="apellido" type="text" placeholder="Doe">
+                            <label for="apellido" class="formulario__label">Apellido:</label>
+                            <input class="formulario__input" name="apellido" id="apellido" type="text" placeholder="Doe"
+                                required>
                         </div>
                         <div class="formulario_linea">
                             <label for="email" class="formulario__label">Email:</label>
-                            <input name="email" id="email" type="email"
-                                pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-                                title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
+                            <input class="formulario__input" name="email" id="email" type="email"
+                                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                                title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com" required>
                         </div>
                         <div class="formulario_linea">
                             <label for="password" class="formulario__label">Contraseña:</label>
-                            <input type="password" id="password" name="password" placeholder="***********" required>
+                            <input class="formulario__input" type="password" id="password" name="password"
+                                placeholder="***********" required>
                         </div>
                         <div class="formulario_linea">
-                            <label for="password" class="formulario__label">Repita Contraseña:</label>
-                            <input type="password" id="repetir_password" name="repetir_password"
-                                placeholder="***********" required>
+                            <label for="repetir_password" class="formulario__label">Repita Contraseña:</label>
+                            <input class="formulario__input" type="password" id="repetir_password"
+                                name="repetir_password" placeholder="***********" required>
                         </div>
                         <div class="formulario__tyc">
                             <button class="registrar" type="submit">Registrar</button>
-                            <input type="checkbox" name="si" id="si" value="si">
-                            <label for="terms_and_condiciones">
-                                <p class="tyc">Acepto </p>
-                                <a href="" class="tyc">Términos y Condiciones</a>
+                            <input type="checkbox" name="terms" id="terms" value="accepted" required>
+                            <label for="terms" class="tyc__label">
+                                <span class="tyc">Acepto </span>
+                                <a href="/terminos" class="tyc">Términos y Condiciones</a>
                             </label>
                         </div>
                     </form>
                 </div>
             </section>
-        </body>
+        </main>
         <%- include('../partials/footerAdmin') %>
 </body>
 
