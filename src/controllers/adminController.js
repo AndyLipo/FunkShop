@@ -1,6 +1,11 @@
 import { unlink } from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'node:path'; // ✅ Solo uno
 import { addNewProductToDB, getAllProductsFromDB, getProductByIdFromDB, editProductInDB, deleteProdFromDB } from '../model/model.js';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Obtiene todos los productos de la BD y renderiza la pag Admin
 export const getAllProducts = async (req, res) => {
@@ -26,7 +31,6 @@ export const createItem = (req, res) => {
 
 //Guarda en la BD el nuevo producto
 export const saveNewProduct = async (req, res) => {
-
     console.log("req.files --> ", req.files);
     console.log("req.body --> ", req.body);
 
@@ -69,7 +73,6 @@ export const getProductById = async (req, res) => {
 
 //Guarda los cambios en la BD de un producto existente
 export const updateProduct = async (req, res) => {
-
     console.log("req.files --> ", req.files);
     console.log("req.body --> ", req.body);
 
@@ -101,29 +104,63 @@ export const updateProduct = async (req, res) => {
 
 //Eliminar un producto de la BD
 export const deleteProduct = async (req, res) => {
+    const { id } = req.params;
 
-    const prod_id = parseInt(req.params.id);
     try {
+        // 1. Obtener los datos del producto (es un array)
+        const productoArray = await getProductByIdFromDB(id);
 
-        const deleteProd = await deleteProdFromDB(prod_id);
-
-        if (deleteProd) {
-            unlink('public/uploads/' + deleteProd[0].img_front, (err) => {
-                if (err) res.send(`Ocurrió un error ${err.code}`);
-                console.log('Imagen borrada');
-            });
-            const datos = await getAllProductsFromDB();
-            res.render('./admin/admin', {
-                data: datos,
-                mensaje: "Item borrado exitosamente"
-            });
-        } else {
-            res.status(404).send('usuario not found');
+        if (!productoArray || productoArray.length === 0) {
+            return res.redirect('/admin?mensaje=Producto no encontrado');
         }
+
+        const producto = productoArray[0]; // ✅ Obtener el primer elemento
+
+        // 2. Intentar eliminar las imágenes (si existen)
+        const publicPath = path.join(__dirname, '../../public');
+
+        // Eliminar imagen frontal
+        if (producto.img_front) {
+            const frontPath = path.join(publicPath, producto.img_front);
+            console.log('Intentando eliminar:', frontPath);
+
+            if (fs.existsSync(frontPath)) {
+                try {
+                    fs.unlinkSync(frontPath);
+                    console.log(`✅ Imagen frontal eliminada: ${frontPath}`);
+                } catch (err) {
+                    console.warn(`⚠️ No se pudo eliminar imagen frontal: ${err.message}`);
+                }
+            } else {
+                console.warn(`⚠️ Imagen frontal no existe: ${frontPath}`);
+            }
+        }
+
+        // Eliminar imagen trasera
+        if (producto.img_back) {
+            const backPath = path.join(publicPath, producto.img_back);
+            console.log('Intentando eliminar:', backPath);
+
+            if (fs.existsSync(backPath)) {
+                try {
+                    fs.unlinkSync(backPath);
+                    console.log(`✅ Imagen trasera eliminada: ${backPath}`);
+                } catch (err) {
+                    console.warn(`⚠️ No se pudo eliminar imagen trasera: ${err.message}`);
+                }
+            } else {
+                console.warn(`⚠️ Imagen trasera no existe: ${backPath}`);
+            }
+        }
+
+        // 3. Eliminar el producto de la base de datos
+        await deleteProdFromDB(id); // ✅ Nombre correcto de la función
+
+        // 4. Redirigir con mensaje de éxito
+        res.redirect('/admin?mensaje=Producto eliminado correctamente');
+
     } catch (error) {
-        console.error("Error deleting product: ", error);
-        res.status(500).send('Internal Server Error');
+        console.error('❌ Error al eliminar producto:', error);
+        res.redirect('/admin?mensaje=Error al eliminar el producto');
     }
-}
-
-
+};
