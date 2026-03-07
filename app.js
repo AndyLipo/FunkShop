@@ -1,5 +1,4 @@
-//En este archivo, colocamos toda la logica para la creacion de nuestro servidor web
-
+import 'dotenv/config'; // ✅ AGREGAR ESTA LÍNEA AL PRINCIPIO
 import express from 'express';
 import session from 'express-session';
 const app = express();
@@ -34,4 +33,6 @@ app.use('/', mainRoutes);
 // ✅ EXPRESS.STATIC AL FINAL (Y SOLO UNA VEZ)
 app.use(express.static('public'));
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+// ✅ USAR PROCESS.ENV.PORT PARA RENDER
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
