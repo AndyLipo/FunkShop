@@ -94,3 +94,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('✅ Listeners agregados correctamente');
 });
+
+async function loadShop() {
+    const { data, error } = await supabase
+        .from("products")
+        .select("*");
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    const container = document.querySelector(".shop-container");
+
+    container.innerHTML = "";
+
+    data.forEach(product => {
+        const card = `
+      <div class="card-item">
+        <img src="${product.img_front || '/img/default.webp'}" />
+        <h3>${product.product_name}</h3>
+        <p>$${product.product_price}</p>
+      </div>
+    `;
+        container.innerHTML += card;
+    });
+}
+
+loadShop();

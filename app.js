@@ -16,6 +16,12 @@ app.use(session({
     saveUninitialized: false,
 }))
 
+//Configuracion supabase
+const supabase = window.supabase.createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_KEY
+)
+
 // Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

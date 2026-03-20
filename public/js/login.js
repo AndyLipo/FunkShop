@@ -60,3 +60,26 @@ document.querySelector('.formulario').addEventListener('submit', (e) => {
     console.log('Password real:', realValue);
     e.target.submit(); // Envía el form
 });
+document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    });
+
+    if (error) {
+        alert("Error login");
+        console.error(error);
+    } else {
+        window.location.href = "/pages/admin/admin.html";
+    }
+});
+
+async function logout() {
+    await supabase.auth.signOut();
+    window.location.href = "/pages/admin/login.html";
+}

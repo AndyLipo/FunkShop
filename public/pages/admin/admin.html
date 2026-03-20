@@ -22,7 +22,7 @@
                     <a class="navbar__link" href="./admin.html">ADMIN</a>
                 </li>
                 <li class="navbar__item">
-                    <a class="navbar__link" href="./login.html">SALIR</a>
+                    <a class="navbar__link" href="#" onclick="logout()">SALIR</a>
                 </li>
             </ul>
         </nav>
@@ -153,8 +153,9 @@
                             <p class="listado__celda">HARRY POTTER</p>
                         </td>
                         <td>
-                            <a class="navbar__cart" href="./edit.html">
-                                <iconify-icon class="listado__iconEdit" icon="ic:baseline-edit"></iconify-icon>
+                            <a href="#" onclick="confirmDeletion(1)">
+                                <iconify-icon class="listado__iconDelete"
+                                    icon="material-symbols-light:delete"></iconify-icon>
                             </a>
                         </td>
                         <td>
@@ -194,6 +195,7 @@
     </footer>
 </body>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<script src="../Js/admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/admin.js"></script>
 
 </html>
