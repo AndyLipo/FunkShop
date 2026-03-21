@@ -36,13 +36,13 @@
                     </ul>
                 </li>
                 <li class="navbar__item">
-                    <a class="navbar__link" href="/contact" class="contacto">CONTACTO</a>
+                    <a class="navbar__link" href="../admin/contacto.html" class="contacto">CONTACTO</a>
                 </li>
                 <li class="navbar__item">
-                    <a class="navbar__link" class="login" href="/login">LOGIN</a>
+                    <a class="navbar__link" class="login" href="../admin/login.html">LOGIN</a>
                 </li>
                 <li class="navbar__item">
-                    <a class="navbar__cart" href="./carrito" class="cart">
+                    <a class="navbar__cart" href="./carrito.html" class="cart">
                         <img src="../../Img/icons/cart-icon.svg" alt="icono del carrito">
                     </a>
                 </li>
@@ -399,6 +399,14 @@
                 }
             };
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+        const { createClient } = supabase;
+        const supabaseClient = createClient(
+            'https://kfamrxlrlluikraynajm.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U'
+        );
     </script>
 </body>
 
