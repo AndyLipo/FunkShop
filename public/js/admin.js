@@ -328,3 +328,29 @@ async function logout() {
     await supabaseClient.auth.signOut();
     window.location.href = "./login.html";
 }
+
+async function createProduct() {
+    const name = document.getElementById("producto").value;
+    const description = document.getElementById("descripcion").value;
+    const sku = document.getElementById("sku").value;
+    const price = document.getElementById("precio").value;
+    const stock = document.getElementById("stock").value;
+
+    const { error } = await supabaseClient
+        .from("products")
+        .insert({
+            product_name: name,
+            product_description: description,
+            product_price: parseFloat(price),
+            product_sku: sku,
+            stock: parseInt(stock),
+        });
+
+    if (error) {
+        console.error(error);
+        alert("Error al crear producto");
+    } else {
+        alert("Producto creado 🔥");
+        window.location.href = "./admin.html";
+    }
+}

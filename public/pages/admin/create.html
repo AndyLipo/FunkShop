@@ -31,12 +31,12 @@
     <body>
         <section class="item container">
             <h1 class="item__titulo">CREAR NUEVO ITEM</h1>
-            <form action="">
+            <form action="" id="productForm">
                 <div class="item__linea">
                     <label for="categoria" class="item__label">Categoria:</label>
                     <select name="categoria" id="categoria" aria-placeholder="Seleccionar">
-                        <option value="seleccionar">Seleccionar</option>
-                        <option value="figuras">Figuras coleccionables</option>
+                        <option value="">Seleccionar</option>
+                        <option value="1">Figuras coleccionables</option>
                     </select>
                     <label for="licencia" class="item__label">Licencia:</label>
                     <select name="licencia" id="licencia">
@@ -68,9 +68,9 @@
                     <input class="item__input" name="descuento" id="descuento" type="text" placeholder="0%">
                     <label for="cuotas" class="item__label">Cuotas:</label>
                     <select name="cuotas" id="cuotas" aria-placeholder="Seleccionar">
-                        <option value="tres">3 Cuotas sin interés</option>
-                        <option value="seis">6 Cuotas sin interés</option>
-                        <option value="doce">12 Cuotas sin interés</option>
+                        <option value="3">3 Cuotas sin interés</option>
+                        <option value="6">6 Cuotas sin interés</option>
+                        <option value="12">12 Cuotas sin interés</option>
                     </select>
                 </div>
                 <div class="item__linea">
@@ -109,5 +109,15 @@
         <p class="rights container">All rights reserved 2022 - Funkoshop &copy;</p>
     </footer>
 </body>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+    const { createClient } = supabase;
+    const supabaseClient = createClient(
+        'https://kfamrxlrlluikraynajm.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U'
+    );
+</script>
+<script src="../../js/create.js"></script>
 
 </html>
