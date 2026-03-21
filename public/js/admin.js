@@ -20,9 +20,10 @@ async function checkAuth() {
 
 checkAuth();
 const supabase = window.supabase.createClient(
-    "https://kfamrxlrlluikraynajm.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U"
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON
 );
+
 
 async function confirmDeletion(product_id) {
     const confirmDelete = confirm(
