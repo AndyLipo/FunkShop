@@ -381,25 +381,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-    <script src="/js/shop.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const dropdownBtn = document.getElementById('dropdownBtn');
-            const dropdownContent = document.getElementById('myDropdown');
-
-            dropdownBtn.addEventListener('click', function () {
-                dropdownContent.classList.toggle('show');
-            });
-
-            window.onclick = function (event) {
-                if (!event.target.matches('#dropdownBtn')) {
-                    if (dropdownContent.classList.contains('show')) {
-                        dropdownContent.classList.remove('show');
-                    }
-                }
-            };
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script>
         const { createClient } = supabase;
@@ -408,6 +389,7 @@
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U'
         );
     </script>
+    <script src="../../js/shop.js"></script>
 </body>
 
 </html>
