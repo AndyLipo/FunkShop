@@ -121,3 +121,4 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
         window.location.href = "./admin.html";
     }
 });
+document.getElementById("licencia").value = data.licence_id || "";
