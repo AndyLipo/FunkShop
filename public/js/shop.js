@@ -127,7 +127,9 @@ let todosLosProductos = [];
 async function loadShop() {
     const { data, error } = await supabaseClient
         .from("products")
-        .select(`*, licence (licence_name)`);
+        .select("*");
+    console.log("Productos:", data);
+    console.log("Error:", error);
 
     if (error) {
         console.error(error);
