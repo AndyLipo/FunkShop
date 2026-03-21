@@ -196,6 +196,13 @@
 </body>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="../js/admin.js"></script>
+<script>
+    const { createClient } = supabase;
+    const supabaseClient = createClient(
+        'https://kfamrxlrlluikraynajm.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U'
+    );
+</script>
+<script src="../../js/admin.js"></script>
 
 </html>

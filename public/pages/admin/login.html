@@ -37,25 +37,18 @@
             <h1 class="login__titulo">INGRESAR A MI CUENTA</h1>
             <!-- Que campos ademas de la password deberian ser obligatorios???-->
             <div class="form_container">
-                <form class="formulario" action="" method="post">
-                    <!-- <div class="formulario_linea"> -->
+                <!-- Cambiá el form, agregale el id -->
+                <form class="formulario" id="loginForm">
                     <div class="formulario_linea">
                         <label for="email" class="formulario__label">Email:</label>
-                        <input class="formulario__input" name="email" id="email" type="email"
-                            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-                            title="Debe ser un formato correcto de email" placeholder="johndoe@correo.com">
+                        <input class="formulario__input" id="email" type="email" placeholder="johndoe@correo.com">
                     </div>
                     <div class="formulario_linea">
                         <label for="password" class="formulario__label">Contraseña:</label>
-                        <input class="formulario__input" type="text" id="password" name="password_display"
-                            placeholder="••••••••••">
+                        <input class="formulario__input" type="text" id="password" placeholder="••••••••••">
                     </div>
                     <div class="formulario__ingresar">
                         <button class="ingresar" type="submit">Ingresar</button>
-                        <input class="checkbox" type="checkbox" name="si" id="si" value="si">
-                        <label class="recordar" for="recordarme">
-                            <p class="recordar">Recordarme </p>
-                        </label>
                     </div>
                     <label>
                         <a href="" class="olvidar">Olvidé mi contraseña</a>
@@ -88,6 +81,15 @@
         <p class="footer__copy">All rights reserved 2023 - Funkoshop &copy;</p>
     </footer>
 </body>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+    const { createClient } = supabase;
+    const supabaseClient = createClient(
+        'https://kfamrxlrlluikraynajm.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U'
+    );
+</script>
 <script src="../../js/login.js"></script>
 
 </html>
