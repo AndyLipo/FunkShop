@@ -152,28 +152,28 @@ function renderProductos(productos) {
     productos.forEach(product => {
         const card = `
             <li class="sliders__item">
-                <div class="carteles">
-                    <p class="nuevos">NUEVO</p>
-                </div>
-                <article class="card-item">
-                    <a class="card-item__link" href="./item.html?id=${product.product_id}">
-                        <picture class="card-item__cover">
-                            <img class="cards-item__img--front" 
-                                src="${product.img_front || '../../img/default.webp'}" 
-                                alt="${product.product_name}">
-                            <img class="cards-item__img--back" 
-                                src="${product.img_back || '../../img/default.webp'}" 
-                                alt="${product.product_name} - dorso">
-                        </picture>
-                        <div class="card-item__content">
-                            <p class="card-item__licence">${product.licence?.licence_id || "-"}</p>
-                            <h4 class="card-item__name">${product.product_name}</h4>
-                            <p class="card-item__price">$ ${product.product_price}</p>
-                            <p class="card-item__promo">${product.dues || 3} CUOTAS SIN INTERÉS</p>
-                        </div>
-                    </a>
-                </article>
-            </li>
+    <div class="carteles">
+        <p class="nuevos">NUEVO</p>
+    </div>
+    <article class="card-item">
+        <a class="card-item__link" href="./item.html?id=${product.product_id}">
+            <picture class="cards-item__cover">
+                <img class="cards-item__img--front" 
+                    src="${product.img_front || '../../img/default.webp'}" 
+                    alt="${product.product_name}">
+                <img class="cards-item__img--back" 
+                    src="${product.img_back || '../../img/default.webp'}" 
+                    alt="${product.product_name} - dorso">
+            </picture>
+            <div class="card-item__content">
+                <p class="card-item__licence">${product.licence?.licence_name || "-"}</p>
+                <h4 class="card-item__name">${product.product_name}</h4>
+                <p class="card-item__price">$ ${product.product_price}</p>
+                <p class="card-item__promo">${product.dues || 3} CUOTAS SIN INTERÉS</p>
+            </div>
+        </a>
+    </article>
+</li>
         `;
         container.innerHTML += card;
     });
