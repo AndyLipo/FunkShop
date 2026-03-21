@@ -4,35 +4,43 @@ async function checkAuth() {
         window.location.href = "./login.html";
     }
 }
-
 checkAuth();
 
-// Cargar categorías y licencias desde Supabase dinámicamente
-async function loadSelects() {
-    const { data: categories } = await supabaseClient
-        .from("category")
-        .select("*");
+let imgFrontFile = null;
+let imgBackFile = null;
 
-    const { data: licences } = await supabaseClient
-        .from("licence")
-        .select("*");
+document.getElementById("btnImgFront").addEventListener("click", () => {
+    document.getElementById("inputImgFront").click();
+});
 
-    const catSelect = document.getElementById("categoria");
-    const licSelect = document.getElementById("licencia");
+document.getElementById("btnImgBack").addEventListener("click", () => {
+    document.getElementById("inputImgBack").click();
+});
 
-    catSelect.innerHTML = '<option value="">Seleccionar</option>';
-    licSelect.innerHTML = '<option value="">Seleccionar</option>';
+document.getElementById("inputImgFront").addEventListener("change", (e) => {
+    imgFrontFile = e.target.files[0];
+    document.getElementById("labelImgFront").textContent = imgFrontFile.name;
+});
 
-    categories.forEach(cat => {
-        catSelect.innerHTML += `<option value="${cat.category_id}">${cat.category_name}</option>`;
-    });
+document.getElementById("inputImgBack").addEventListener("change", (e) => {
+    imgBackFile = e.target.files[0];
+    document.getElementById("labelImgBack").textContent = imgBackFile.name;
+});
 
-    licences.forEach(lic => {
-        licSelect.innerHTML += `<option value="${lic.licence_id}">${lic.licence_name}</option>`;
-    });
+async function uploadImage(file) {
+    const fileName = `${Date.now()}_${file.name}`;
+    const { error } = await supabaseClient.storage
+        .from("productos")
+        .upload(fileName, file);
+
+    if (error) throw error;
+
+    const { data } = supabaseClient.storage
+        .from("productos")
+        .getPublicUrl(fileName);
+
+    return data.publicUrl;
 }
-
-loadSelects();
 
 document.getElementById("productForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -42,12 +50,18 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
     const sku = document.getElementById("sku").value;
     const price = document.getElementById("precio").value;
     const stock = document.getElementById("stock").value;
-    const category_id = document.getElementById("categoria").value;
-    const licence_id = document.getElementById("licencia").value;
     const dues = document.getElementById("cuotas").value;
+    const category = parseInt(document.getElementById("categoria").value);
 
-    if (!name || !sku || !price) {
-        alert("Nombre, SKU y precio son obligatorios");
+    let imgFrontUrl = null;
+    let imgBackUrl = null;
+
+    try {
+        if (imgFrontFile) imgFrontUrl = await uploadImage(imgFrontFile);
+        if (imgBackFile) imgBackUrl = await uploadImage(imgBackFile);
+    } catch (err) {
+        console.error(err);
+        alert("Error al subir las imágenes");
         return;
     }
 
@@ -58,10 +72,11 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
             product_description: description,
             product_price: parseFloat(price),
             product_sku: sku,
-            stock: parseInt(stock) || 0,
-            category_id: parseInt(category_id) || null,
-            licence_id: parseInt(licence_id) || null,
-            dues: parseInt(dues) || 3,
+            stock: parseInt(stock),
+            dues: parseInt(dues),
+            category_id: category,
+            img_front: imgFrontUrl,
+            img_back: imgBackUrl,
         });
 
     if (error) {
