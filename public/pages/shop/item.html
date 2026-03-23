@@ -160,7 +160,15 @@
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script src="/js/glide.js"></script>
-    <script src="/js/item.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+        const { createClient } = supabase;
+        const supabaseClient = createClient(
+            'https://kfamrxlrlluikraynajm.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtmYW1yeGxybGx1aWtyYXluYWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3OTI0NjYsImV4cCI6MjA4OTM2ODQ2Nn0.FFykn_-Uk5W7asU3TpV6jR8On9GmKk3ev3_iosMAg3U'
+        );
+    </script>
+    <script src="../../js/item.js"></script>
     <script>
         new Glide('.glide', {
             type: 'carousel',
