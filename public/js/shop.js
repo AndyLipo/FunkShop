@@ -42,7 +42,7 @@ function renderProductos(productos) {
                     alt="${product.product_name} - dorso">
             </picture>
             <div class="card-item__content">
-                <p class="card-item__licence">${product.licence?.licence_name}</p>
+                <p class="card-item__licence">${product.licence?.licencia_name}</p>
                 <h4 class="card-item__name">${product.product_name}</h4>
                 <p class="card-item__price">$ ${product.product_price}</p>
                 <p class="card-item__promo">${product.dues || 3} CUOTAS SIN INTERÉS</p>
