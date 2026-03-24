@@ -52,6 +52,8 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
     const stock = document.getElementById("stock").value;
     const dues = document.getElementById("cuotas").value;
     const category = parseInt(document.getElementById("categoria").value);
+    const licence = parseInt(document.getElementById("licencia").value); // 👈 faltaba esto
+
 
     let imgFrontUrl = null;
     let imgBackUrl = null;
@@ -77,6 +79,8 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
             category_id: category,
             img_front: imgFrontUrl,
             img_back: imgBackUrl,
+            licence_id: licence, // 👈 faltaba esto
+
         });
 
     if (error) {
