@@ -26,7 +26,7 @@ async function loadProduct() {
     document.querySelector('.item__text').textContent = data.product_description || "";
     document.querySelector('.item__price').textContent = `$ ${data.product_price}`;
     document.querySelector('.item__promo').innerHTML = `<span class="item__promo--underlined">Ver métodos de pago</span> - ${data.dues || 3} CUOTAS SIN INTERÉS`;
-    document.querySelector('.item__cover img').src = data.img_front;
+    document.querySelector('.item__cover img').src = data.img_front || '../../img/default.webp';
     document.querySelector('.item__cover img').alt = data.product_name;
 }
 
