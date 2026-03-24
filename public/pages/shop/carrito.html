@@ -103,9 +103,7 @@
                         <p class="resumen_total_nro">$ 5.399,97</p>
                 </tr>
             </table>
-            <a href="checkout.html">
-                <button class="boton_ir_a_pagar">IR A PAGAR</button>
-            </a>
+            <button class="boton_ir_a_pagar" onclick="irAPagar()">IR A PAGAR</button>
         </section>
     </main>
 
@@ -132,5 +130,34 @@
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="../../js/carrito.js"></script>
+<script>
+    async function irAPagar() {
+        const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+
+        if (carrito.length === 0) {
+            alert('El carrito está vacío');
+            return;
+        }
+
+        try {
+            const response = await fetch('/.netlify/functions/create-preference', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ carrito })
+            });
+
+            const data = await response.json();
+
+            if (data.init_point) {
+                window.location.href = data.init_point;
+            } else {
+                alert('Error al procesar el pago');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error al conectar con MercadoPago');
+        }
+    }
+</script>
 
 </html>
